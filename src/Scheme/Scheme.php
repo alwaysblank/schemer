@@ -6,6 +6,7 @@ namespace AlwaysBlank\Schemer\Scheme;
 
 use AlwaysBlank\Schemer\Iterator;
 use AlwaysBlank\Schemer\Node;
+use Throwable;
 
 abstract class Scheme
 {
@@ -38,7 +39,15 @@ abstract class Scheme
             [$type, $data] = $value;
 
             if (method_exists(static::class, $type)) {
-                $node = static::$type($data);
+                if (defined('ALWAYSBLANK_SCHEMER_DEBUG') && true === constant('ALWAYSBLANK_SCHEMER_DEBUG')) {
+                    $node = static::$type($data);
+                } else {
+                    try {
+                        $node = static::$type($data);
+                    } catch (Throwable $exception) {
+                        return; // just pretend this doesn't exist
+                    }
+                }
                 if (is_a($node, Node::class) && $node->notEmpty()) {
                     return $node;
                 }
