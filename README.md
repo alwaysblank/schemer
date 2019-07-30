@@ -1,4 +1,4 @@
-# Schemer
+# Schemer 🦹
 
 Help with [schema.org](https://schema.org/) markup generation.
 
