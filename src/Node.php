@@ -24,8 +24,11 @@ class Node
     protected $content;
     protected $tag;
 
-    protected function __construct(Brief $Args)
+    protected function __construct(array $args)
     {
+        // Make this a Brief so handling it is easier.
+        $Args = new Brief($args);
+
         $this->setItemscope($Args);
         $this->setItemprop($Args);
         $this->setItemtype($Args);
@@ -39,9 +42,9 @@ class Node
         return $this->render();
     }
 
-    public static function add(Brief $Args)
+    public static function add(array $args): self
     {
-        return new static($Args);
+        return new static($args);
     }
 
     public function render()
