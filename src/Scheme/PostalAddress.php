@@ -5,7 +5,7 @@ namespace AlwaysBlank\Schemer\Scheme;
 
 
 use AlwaysBlank\Schemer\Node;
-use AlwaysBlank\Schemer\Property\{City, Country, POBox, State, Street, ZipCode};
+use AlwaysBlank\Schemer\Property\{City, Country, POBox, State, Street, Zip};
 
 class PostalAddress extends Scheme
 {
@@ -13,7 +13,7 @@ class PostalAddress extends Scheme
     use State;
     use City;
     use POBox;
-    use ZipCode;
+    use Zip;
     use Country;
 
     public static function wrap(string $content, array $args = []): Node

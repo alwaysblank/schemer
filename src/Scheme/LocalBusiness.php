@@ -8,7 +8,7 @@ use AlwaysBlank\Schemer\Property\{Name, Phone, URL};
 
 class LocalBusiness extends Scheme
 {
-    use \AlwaysBlank\Schemer\Property\PostalAddress;
+    use \AlwaysBlank\Schemer\Property\Address;
     use Name;
     use Phone;
     use URL;

@@ -6,7 +6,7 @@ namespace AlwaysBlank\Schemer\Property;
 
 use AlwaysBlank\Schemer\Node;
 
-trait PostalAddress
+trait Address
 {
     public static function address(array $address): Node
     {

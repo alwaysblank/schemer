@@ -6,7 +6,7 @@ namespace AlwaysBlank\Schemer\Property;
 
 use AlwaysBlank\Schemer\Node;
 
-trait ZipCode
+trait Zip
 {
     public static function zip(string $zip): Node
     {
