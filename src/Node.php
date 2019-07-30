@@ -25,24 +25,40 @@ class Node
     protected $attributes;
     protected $tag;
     protected $selfclosing;
+    protected $empty;
 
     protected function __construct(array $args)
     {
-        // Make this a Brief so handling it is easier.
-        $Args = new Brief($args);
+        if (empty($args)) {
+            // This is essentially the "false" state
+            $this->empty = true;
+        } else {
+            // Make this a Brief so handling it is easier.
+            $Args = new Brief($args);
 
-        $this->setItemscope($Args);
-        $this->setItemprop($Args);
-        $this->setItemtype($Args);
-        $this->setSelfClosing($Args);
-        $this->setContent($Args);
-        $this->setTag($Args);
-        $this->setAttributes($Args);
+            $this->setItemscope($Args);
+            $this->setItemprop($Args);
+            $this->setItemtype($Args);
+            $this->setSelfClosing($Args);
+            $this->setContent($Args);
+            $this->setTag($Args);
+            $this->setAttributes($Args);
+        }
     }
 
     public function __toString(): string
     {
         return $this->render();
+    }
+
+    public function empty(): bool
+    {
+        return true === $this->empty;
+    }
+
+    public function notEmpty(): bool
+    {
+        return ! $this->empty();
     }
 
     public static function add(array $args): self
@@ -52,6 +68,10 @@ class Node
 
     public function render(): string
     {
+        if ($this->empty()) {
+            return '';
+        }
+
         $attributes = [];
 
         if ($this->itemscope) {
@@ -67,10 +87,11 @@ class Node
         }
 
         if (is_array($this->attributes)) {
-            $attributes[] = array_reduce($this->attributes, function($carry, $item) {
+            $attributes[] = array_reduce($this->attributes, function ($carry, $item) {
                 $attribute = true === $item[1]
                     ? $item[0]
                     : "{$item[0]}=\"{$item[1]}\"";
+
                 return false === $carry ? $attribute : "$carry $attribute";
             }, false);
         }
