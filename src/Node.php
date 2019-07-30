@@ -37,7 +37,7 @@ class Node
         $this->setTag($Args);
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->render();
     }
@@ -47,7 +47,7 @@ class Node
         return new static($args);
     }
 
-    public function render()
+    public function render(): string
     {
         $attributes = [];
 
@@ -76,32 +76,32 @@ class Node
         }
     }
 
-    protected function setItemscope(Brief $Args)
+    protected function setItemscope(Brief $Args): void
     {
         $this->itemscope = false !== $Args->itemscope ? true : false;
     }
 
-    protected function setSelfClosing(Brief $Args)
+    protected function setSelfClosing(Brief $Args): void
     {
         $this->selfclosing = in_array($Args->tag, $this::SELFCLOSING);
     }
 
-    protected function setItemprop(Brief $Args)
+    protected function setItemprop(Brief $Args): void
     {
         $this->itemprop = is_string($Args->itemprop) ? $Args->itemprop : false;
     }
 
-    protected function setItemtype(Brief $Args)
+    protected function setItemtype(Brief $Args): void
     {
         $this->itemtype = is_string($Args->itemtype) ? $Args->itemtype : false;
     }
 
-    protected function setContent(Brief $Args)
+    protected function setContent(Brief $Args): void
     {
         $this->content = is_string($Args->content) ? $Args->content : false;
     }
 
-    protected function setTag(Brief $Args)
+    protected function setTag(Brief $Args): void
     {
         $this->tag = $Args->tag ?: 'span';
     }
