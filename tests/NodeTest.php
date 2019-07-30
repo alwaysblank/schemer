@@ -12,13 +12,13 @@ class NodeTest extends TestCase
 {
     public function testCreateNodeSuccessfully(): void
     {
-        $node = Node::add(Brief::make([
+        $node = Node::add([
             'itemscope' => true,
             'itemtype'  => 'http://schema.org/LocalBusiness',
             'itemprop'  => 'description',
             'tag'       => 'div',
             'content'   => "Always Blank",
-        ]));
+        ]);
 
         $this->assertEquals(
             '<div itemscope itemprop="description" itemprop="http://schema.org/LocalBusiness">Always Blank</div>',
@@ -28,14 +28,14 @@ class NodeTest extends TestCase
 
     public function testCreateSelfClosingNodeSuccessfully(): void
     {
-        $node = Node::add(Brief::make([
+        $node = Node::add([
             'itemscope'   => true,
             'itemtype'    => 'http://schema.org/LocalBusiness',
             'itemprop'    => 'description',
             'tag'         => 'meta',
             'content'     => "Always Blank",
             'selfclosing' => true,
-        ]));
+        ]);
 
         $this->assertEquals(
             '<meta itemscope itemprop="description" itemprop="http://schema.org/LocalBusiness" content="Always Blank" />',
@@ -45,17 +45,47 @@ class NodeTest extends TestCase
 
     public function testCastNodeToString(): void
     {
-        $node = Node::add(Brief::make([
+        $node = Node::add([
             'itemscope' => true,
             'itemtype'  => 'http://schema.org/LocalBusiness',
             'itemprop'  => 'description',
             'tag'       => 'div',
             'content'   => "Always Blank",
-        ]));
+        ]);
 
         $this->assertEquals(
             '<div itemscope itemprop="description" itemprop="http://schema.org/LocalBusiness">Always Blank</div>',
             (string)$node
+        );
+    }
+
+    public function testAddArbitraryAttributes(): void
+    {
+        $this->assertEquals(
+            '<div itemscope itemprop="description" itemprop="http://schema.org/LocalBusiness" hidden>Always Blank</div>',
+            Node::add([
+                'itemscope' => true,
+                'itemtype'  => 'http://schema.org/LocalBusiness',
+                'itemprop'  => 'description',
+                'tag'       => 'div',
+                'content'   => "Always Blank",
+                'attributes' => [
+                    'hidden' => true,
+                ]
+            ])->render()
+        );
+        $this->assertEquals(
+            '<a itemscope itemprop="description" itemprop="http://schema.org/LocalBusiness" href="https://www.alwaysblank.org">Always Blank</a>',
+            Node::add([
+                'itemscope' => true,
+                'itemtype'  => 'http://schema.org/LocalBusiness',
+                'itemprop'  => 'description',
+                'tag'       => 'a',
+                'content'   => "Always Blank",
+                'attributes' => [
+                    'href' => 'https://www.alwaysblank.org',
+                ]
+            ])->render()
         );
     }
 

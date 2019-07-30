@@ -22,7 +22,9 @@ class Node
     protected $itemprop;
     protected $itemtype;
     protected $content;
+    protected $attributes;
     protected $tag;
+    protected $selfclosing;
 
     protected function __construct(array $args)
     {
@@ -35,6 +37,7 @@ class Node
         $this->setSelfClosing($Args);
         $this->setContent($Args);
         $this->setTag($Args);
+        $this->setAttributes($Args);
     }
 
     public function __toString(): string
@@ -61,6 +64,15 @@ class Node
 
         if ($this->itemtype) {
             $attributes[] = 'itemprop="' . $this->itemtype . '"';
+        }
+
+        if (is_array($this->attributes)) {
+            $attributes[] = array_reduce($this->attributes, function($carry, $item) {
+                $attribute = true === $item[1]
+                    ? $item[0]
+                    : "{$item[0]}=\"{$item[1]}\"";
+                return false === $carry ? $attribute : "$carry $attribute";
+            }, false);
         }
 
         if ($this->selfclosing && $this->content) {
@@ -104,5 +116,16 @@ class Node
     protected function setTag(Brief $Args): void
     {
         $this->tag = $Args->tag ?: 'span';
+    }
+
+    protected function setAttributes(Brief $Args)
+    {
+        if ($Args->attributes && is_array($Args->attributes)) {
+            $collected_attributes = [];
+            foreach ($Args->attributes as $key => $value) {
+                $collected_attributes[] = [$key, $value];
+            }
+            $this->attributes = $collected_attributes;
+        }
     }
 }
