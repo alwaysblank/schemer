@@ -8,10 +8,19 @@ use AlwaysBlank\Brief\Brief;
 
 class Node
 {
+    public const SELFCLOSING = [
+        'img',
+        'br',
+        'hr',
+        'source',
+        'input',
+        'meta',
+        'embed',
+    ];
+
     protected $itemscope;
     protected $itemprop;
     protected $itemtype;
-    protected $selfclosing;
     protected $content;
     protected $tag;
 
@@ -71,7 +80,7 @@ class Node
 
     protected function setSelfClosing(Brief $Args)
     {
-        $this->selfclosing = false !== $Args->selfclosing ? true : false;
+        $this->selfclosing = in_array($Args->tag, $this::SELFCLOSING);
     }
 
     protected function setItemprop(Brief $Args)
