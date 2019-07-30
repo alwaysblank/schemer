@@ -11,10 +11,10 @@ use PHPUnit\Framework\TestCase;
 class LocalBusinessTest extends TestCase
 {
     const BUSINESS = [
-        'address' => PostalAddressTest::ADDRESS,
-        'name'    => 'Always Blank',
-        'phone'   => '(123) 456-7890',
-        'url'     => 'https://www.alwaysblank.org',
+        ['address', PostalAddressTest::ADDRESS],
+        ['name', 'Always Blank'],
+        ['phone', '(123) 456-7890'],
+        ['url', 'https://www.alwaysblank.org'],
     ];
 
     public function testCreateLocalBusiness(): void

@@ -30,9 +30,15 @@ abstract class Scheme
      */
     public static function ingest(array $segments): array
     {
-        return Iterator::iterate(function ($type, $value) {
+        return Iterator::iterate(function ($key, $value) {
+            if ( ! is_array($value) || count($value) !== 2) {
+                return; // can't interpret this
+            }
+
+            [$type, $data] = $value;
+
             if (method_exists(static::class, $type)) {
-                $node = static::$type($value);
+                $node = static::$type($data);
                 if (is_a($node, Node::class) && $node->notEmpty()) {
                     return $node;
                 }

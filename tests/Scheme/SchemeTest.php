@@ -9,41 +9,36 @@ use PHPUnit\Framework\TestCase;
 
 class SchemeTest extends TestCase
 {
+    const PROPERTIES = [
+        ['state', 'OR'],
+        [
+            'url',
+            [
+                'url'     => 'https://www.alwaysblank.org',
+                'content' => 'Visit Me!',
+            ]
+        ]
+    ];
+
     public function testBasicSchemeIngestion(): void
     {
-        $scheme = FakeScheme::ingest(['state' => 'OR']);
+        $scheme = FakeScheme::ingest([['state', 'OR']]);
         $this->assertIsArray($scheme);
-        $this->assertArrayHasKey('state', $scheme);
-        $this->assertInstanceOf(Node::class, $scheme['state']);
+        $this->assertArrayHasKey(0, $scheme);
+        $this->assertInstanceOf(Node::class, $scheme[0]);
     }
 
     public function testStorePropertiesInOrderTheyArePassed(): void
     {
-        $properties = [
-            'state' => 'OR',
-            'url'   => [
-                'url'     => 'https://www.alwaysblank.org',
-                'content' => 'Visit Me!',
-            ]
-        ];
-
-        $forward  = FakeScheme::ingest($properties);
-        $backward = FakeScheme::ingest(array_reverse($properties, true));
+        $forward  = FakeScheme::ingest($this::PROPERTIES);
+        $backward = FakeScheme::ingest(array_reverse($this::PROPERTIES, true));
         $this->assertEquals(array_shift($forward), array_pop($backward));
     }
 
     public function testRenderPropertiesInTheOrderTheyArePassed(): void
     {
-        $properties = [
-            'state' => 'OR',
-            'url'   => [
-                'url'     => 'https://www.alwaysblank.org',
-                'content' => 'Visit Me!',
-            ]
-        ];
-
-        $forward  = FakeScheme::build($properties);
-        $backward = FakeScheme::build(array_reverse($properties, true));
+        $forward  = FakeScheme::build($this::PROPERTIES);
+        $backward = FakeScheme::build(array_reverse($this::PROPERTIES, true));
         $this->assertNotEquals($forward->render(), $backward->render());
         $this->assertEquals(
             '<span itemscope itemprop="fake-scheme" itemprop="http://schema.org/FakeScheme"><span itemprop="addressRegion">OR</span><a itemprop="url" href="https://www.alwaysblank.org">Visit Me!</a></span>',
@@ -52,6 +47,15 @@ class SchemeTest extends TestCase
         $this->assertEquals(
             '<span itemscope itemprop="fake-scheme" itemprop="http://schema.org/FakeScheme"><a itemprop="url" href="https://www.alwaysblank.org">Visit Me!</a><span itemprop="addressRegion">OR</span></span>',
             $backward->render()
+        );
+    }
+
+    public function testRenderMultiplePropertiesOfIdenticalType(): void
+    {
+        $scheme = FakeScheme::build(array_merge($this::PROPERTIES, [['state', 'CA'], ['state', 'MA']]));
+        $this->assertEquals(
+            '<span itemscope itemprop="fake-scheme" itemprop="http://schema.org/FakeScheme"><span itemprop="addressRegion">OR</span><a itemprop="url" href="https://www.alwaysblank.org">Visit Me!</a><span itemprop="addressRegion">CA</span><span itemprop="addressRegion">MA</span></span>',
+            $scheme->render()
         );
     }
 }
