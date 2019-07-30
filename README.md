@@ -1,6 +1,6 @@
 # Schemer
 
-Help with (schema.org)[https://schema.org/] markup generation.
+Help with [schema.org](https://schema.org/) markup generation.
 
 [![Build Status](https://travis-ci.org/alwaysblank/schemer.svg?branch=master)](https://travis-ci.org/alwaysblank/schemer)
 
@@ -47,14 +47,14 @@ echo AlwaysBlank\Schemer\Scheme\PostalAddress::build([
 
 Currently Schemer supports the following Schemes in some fashion. More will be added in the future! Please feel free to file an issue with schemes you'd like to see, or—even better!—a pull request adding them. See "How It Works" below for more information on how to create new Schemes and Properties.
 
-- (`PostalAddress`)[https://schema.org/PostalAddress] can understand the following:
+- [`PostalAddress`](https://schema.org/PostalAddress) can understand the following:
     - `street`
     - `state`
     - `city`
     - `zip` (zip code)
     - `pobox` (P.O. box)
     - `country`
-- (`LocalBusiness`)[https://schema.org/LocalBusiness] can understand the following:
+- [`LocalBusiness`](https://schema.org/LocalBusiness) can understand the following:
     - `name`
     - `phone` (phone segments will be rendered as links with `tel:`)
     - `url` (url can take a string, or an array with two items keyed `url` and `content`)
