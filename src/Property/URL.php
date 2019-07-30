@@ -15,7 +15,7 @@ trait URL
             $uri     = $url;
         } elseif (is_array($url) && isset($url['content']) && isset($url['url'])) {
             $content = $url['content'];
-            $uri     = $url['uri'];
+            $uri     = $url['url'];
         } else {
             // can't use this
             return Node::add([]);
