@@ -4,8 +4,48 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dd8e371d4b2c00db639b4acdcbae7826",
-    "packages": [],
+    "content-hash": "cfefc9c00f8f4b5e76e9a697bc153261",
+    "packages": [
+        {
+            "name": "alwaysblank/brief",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alwaysblank/brief.git",
+                "reference": "081f3531dc83f39d4f21cfb0179433a6a79fb1dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alwaysblank/brief/zipball/081f3531dc83f39d4f21cfb0179433a6a79fb1dc",
+                "reference": "081f3531dc83f39d4f21cfb0179433a6a79fb1dc",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AlwaysBlank\\Brief\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Martinez-Bateman",
+                    "email": "ben@alwaysblank.org"
+                }
+            ],
+            "description": "Present your arguments.",
+            "time": "2019-07-16T17:19:30+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
@@ -1533,6 +1573,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "^7.2"
+    },
     "platform-dev": []
 }

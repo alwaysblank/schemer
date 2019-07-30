@@ -18,7 +18,8 @@
         }
     },
     "require": {
-        "php": "^7.2"
+        "php": "^7.2",
+        "alwaysblank/brief": "^1.0"
     },
     "scripts": {
         "test": "./vendor/bin/phpunit --testdox"
