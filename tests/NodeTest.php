@@ -4,7 +4,6 @@
 namespace AlwaysBlank\Schemer\Tests;
 
 
-use AlwaysBlank\Brief\Brief;
 use AlwaysBlank\Schemer\Node;
 use PHPUnit\Framework\TestCase;
 
@@ -87,6 +86,12 @@ class NodeTest extends TestCase
                 ]
             ])->render()
         );
+    }
+
+    public function testEmptyNodeReturnsEmptyString(): void
+    {
+        $Node = Node::add([]);
+        $this->assertEmpty($Node->render());
     }
 
 }
