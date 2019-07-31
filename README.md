@@ -146,3 +146,15 @@ To debug Schemer, set the PHP constant `ALWAYSBLANK_SCHEMER_DEBUG` to `true`. As
 Currently the debug flag has the following effects (this list may expand with time):
 
 - Stop suppressing exceptions when calling `Property`s with bad arguments.
+
+## Limitations
+
+### Nesting
+
+The output of a `Scheme` is generally pretty "flat" in the sense that it's just a list of elements that aren't nested within on another. (The exception being if the `Scheme` in question includes other `Scheme`s as `Property`s, as `LocalBusiness` does with `Address`.) This is more or less by design: So far as I can tell, building a system that would allow a user to dynamically modify the nesting of arbitrary elements would create an extreme amount of complexity in a library that is supposed to be very simple. In general, `Scheme`-level content isn't usually heavily nested anyway (apart from the aforementioned exceptions).
+
+If you find yourself needing a more complex structure, Schemer is design to be flexible enough that you can build `Scheme`s and `Property`s "on the fly"—or even just use `Property`s directly without the need for a `Scheme`. 
+
+### Options
+
+This library is currently limited in terms of what it "understands". While it can be easily expanded, I have no intention of ever making it comprehensive with respect to the full schema.org specifications. Polite feature requests are always welcome (and good PRs will likely be merged without question), but please keep in mind that the primary purpose of this library is to make a small slice of repetitive tasks less repetitive, not to solve all microdata-related problems.
