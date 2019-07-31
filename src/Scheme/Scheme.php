@@ -32,15 +32,15 @@ abstract class Scheme
     public static function ingest(array $segments): array
     {
         return Iterator::iterate(function ($key, $value) {
-            if ( ! is_array($value) || count($value) !== 2) {
+            if ( ! is_array($value) || count($value) < 2 || count($value) > 3) {
                 return; // can't interpret this
             }
 
-            [$type, $data] = $value;
+            [$type, $data, $args] = array_pad($value, 3, false);
 
             if (method_exists(static::class, $type)) {
                 if (defined('ALWAYSBLANK_SCHEMER_DEBUG') && true === constant('ALWAYSBLANK_SCHEMER_DEBUG')) {
-                    $node = static::$type($data);
+                    $node = static::$type($data, $args);
                 } else {
                     try {
                         $node = static::$type($data);
