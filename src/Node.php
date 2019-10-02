@@ -34,7 +34,7 @@ class Node
             $this->empty = true;
         } else {
             // Make this a Brief so handling it is easier.
-            $Args = new Brief($args);
+            $Args = new Brief($args, $this->getBriefSettings());
 
             $this->setItemscope($Args);
             $this->setItemprop($Args);
@@ -44,6 +44,18 @@ class Node
             $this->setTag($Args);
             $this->setAttributes($Args);
         }
+    }
+
+    protected function getBriefSettings()
+    {
+        return [
+            'aliases' => [
+                'itemscope'  => ['scope', 'iscope'],
+                'itemprop'   => ['prop', 'iprop'],
+                'itemtype'   => ['type', 'itype'],
+                'attributes' => ['attr', 'attrs'],
+            ]
+        ];
     }
 
     public function __toString(): string
