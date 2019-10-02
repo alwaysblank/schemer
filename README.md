@@ -133,6 +133,19 @@ class Example extends AlwaysBlank\Schemer\Scheme\Scheme
     }
 ```
 
+#### Aliases
+
+When defining Nodes, you can use abbreviations for the properties. This may be useful if you find yourself in a situation where you need to type up a lot of Nodes. 
+
+Supported abbreviations are:
+
+| Property   	| Alias(es)     	|
+|------------	|---------------	|
+| itemscope  	| scope, iscope 	|
+| itemprop   	| prop, iprop   	|
+| itemtype   	| type, itype   	|
+| attributes 	| attr, attrs   	|
+
 This will create a `Scheme` called `Example` that will understand `city` and `name`, and will use a `<section>` with an additional attribute of `data-section="example"`.
 
 ### Going Further

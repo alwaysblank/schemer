@@ -88,6 +88,36 @@ class NodeTest extends TestCase
         );
     }
 
+    public function testSetAttributesViaAliases(): void
+    {
+        $this->assertEquals(
+            '<a itemscope itemprop="description" itemprop="http://schema.org/LocalBusiness" href="https://www.alwaysblank.org">Always Blank</a>',
+            Node::add([
+                'scope' => true,
+                'type'  => 'http://schema.org/LocalBusiness',
+                'prop'  => 'description',
+                'tag'       => 'a',
+                'content'   => "Always Blank",
+                'attrs' => [
+                    'href' => 'https://www.alwaysblank.org',
+                ]
+            ])->render()
+        );
+        $this->assertEquals(
+            '<a itemscope itemprop="description" itemprop="http://schema.org/LocalBusiness" href="https://www.alwaysblank.org">Always Blank</a>',
+            Node::add([
+                'iscope' => true,
+                'itype'  => 'http://schema.org/LocalBusiness',
+                'iprop'  => 'description',
+                'tag'       => 'a',
+                'content'   => "Always Blank",
+                'attr' => [
+                    'href' => 'https://www.alwaysblank.org',
+                ]
+            ])->render()
+        );
+    }
+
     public function testEmptyNodeReturnsEmptyString(): void
     {
         $Node = Node::add([]);
