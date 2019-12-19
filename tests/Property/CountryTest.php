@@ -22,7 +22,7 @@ class CountryTest extends TestCase
     {
         $Country = $this::country('USA');
         $this->assertEquals(
-            '<span itemprop="addressCountry">USA</span>',
+            '<span itemprop="addressCountry">USA</span>&#8203;',
             $Country->render()
         );
     }

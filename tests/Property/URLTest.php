@@ -24,7 +24,7 @@ class URLTest extends TestCase
     {
         $URL = $this::url('https://www.alwaysblank.org');
         $this->assertEquals(
-            '<a itemprop="url" href="https://www.alwaysblank.org">https://www.alwaysblank.org</a>',
+            '<a itemprop="url" href="https://www.alwaysblank.org">https://www.alwaysblank.org</a>&#8203;',
             $URL->render()
         );
     }
@@ -33,7 +33,7 @@ class URLTest extends TestCase
     {
         $URL = $this::url(['url' => 'https://www.alwaysblank.org', 'content' => 'Visit Me']);
         $this->assertEquals(
-            '<a itemprop="url" href="https://www.alwaysblank.org">Visit Me</a>',
+            '<a itemprop="url" href="https://www.alwaysblank.org">Visit Me</a>&#8203;',
             $URL->render()
         );
     }

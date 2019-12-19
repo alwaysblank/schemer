@@ -13,7 +13,7 @@ class AddressTest extends TestCase
 {
     use Address;
 
-    const RENDERED = '<div itemscope itemprop="address" itemprop="http://schema.org/PostalAddress"><span itemprop="streetAddress">123 Oak St</span><span itemprop="addressRegion">OR</span><span itemprop="addressLocality">Portland</span><span itemprop="postalCode">97123</span><span itemprop="postOfficeBoxNumber">P.O. 1234</span><span itemprop="addressCountry">USA</span></div>';
+    const RENDERED = '<div itemscope itemprop="address" itemprop="http://schema.org/PostalAddress"><span itemprop="streetAddress">123 Oak St</span>&#8203;<span itemprop="addressRegion">OR</span>&#8203;<span itemprop="addressLocality">Portland</span>&#8203;<span itemprop="postalCode">97123</span>&#8203;<span itemprop="postOfficeBoxNumber">P.O. 1234</span>&#8203;<span itemprop="addressCountry">USA</span>&#8203;</div>';
 
     public function testCreateAddressNode(): void
     {

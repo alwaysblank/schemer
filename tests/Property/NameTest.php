@@ -22,7 +22,7 @@ class NameTest extends TestCase
     {
         $Name = $this::name('Always Blank');
         $this->assertEquals(
-            '<span itemprop="name">Always Blank</span>',
+            '<span itemprop="name">Always Blank</span>&#8203;',
             $Name->render()
         );
     }

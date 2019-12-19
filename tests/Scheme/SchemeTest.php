@@ -41,11 +41,11 @@ class SchemeTest extends TestCase
         $backward = FakeScheme::build(array_reverse($this::PROPERTIES, true));
         $this->assertNotEquals($forward->render(), $backward->render());
         $this->assertEquals(
-            '<span itemscope itemprop="fake-scheme" itemprop="http://schema.org/FakeScheme"><span itemprop="addressRegion">OR</span><a itemprop="url" href="https://www.alwaysblank.org">Visit Me!</a></span>',
+            '<span itemscope itemprop="fake-scheme" itemprop="http://schema.org/FakeScheme"><span itemprop="addressRegion">OR</span>&#8203;<a itemprop="url" href="https://www.alwaysblank.org">Visit Me!</a>&#8203;</span>&#8203;',
             $forward->render()
         );
         $this->assertEquals(
-            '<span itemscope itemprop="fake-scheme" itemprop="http://schema.org/FakeScheme"><a itemprop="url" href="https://www.alwaysblank.org">Visit Me!</a><span itemprop="addressRegion">OR</span></span>',
+            '<span itemscope itemprop="fake-scheme" itemprop="http://schema.org/FakeScheme"><a itemprop="url" href="https://www.alwaysblank.org">Visit Me!</a>&#8203;<span itemprop="addressRegion">OR</span>&#8203;</span>&#8203;',
             $backward->render()
         );
     }
@@ -54,7 +54,7 @@ class SchemeTest extends TestCase
     {
         $scheme = FakeScheme::build(array_merge($this::PROPERTIES, [['state', 'CA'], ['state', 'MA']]));
         $this->assertEquals(
-            '<span itemscope itemprop="fake-scheme" itemprop="http://schema.org/FakeScheme"><span itemprop="addressRegion">OR</span><a itemprop="url" href="https://www.alwaysblank.org">Visit Me!</a><span itemprop="addressRegion">CA</span><span itemprop="addressRegion">MA</span></span>',
+            '<span itemscope itemprop="fake-scheme" itemprop="http://schema.org/FakeScheme"><span itemprop="addressRegion">OR</span>&#8203;<a itemprop="url" href="https://www.alwaysblank.org">Visit Me!</a>&#8203;<span itemprop="addressRegion">CA</span>&#8203;<span itemprop="addressRegion">MA</span>&#8203;</span>&#8203;',
             $scheme->render()
         );
     }

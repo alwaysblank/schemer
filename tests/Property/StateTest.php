@@ -22,7 +22,7 @@ class StateTest extends TestCase
     {
         $State = $this::state('Oregon');
         $this->assertEquals(
-            '<span itemprop="addressRegion">Oregon</span>',
+            '<span itemprop="addressRegion">Oregon</span>&#8203;',
             $State->render()
         );
     }

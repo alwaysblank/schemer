@@ -22,7 +22,7 @@ class StreetTest extends TestCase
     {
         $Street = $this::street('123 Oak St.');
         $this->assertEquals(
-            '<span itemprop="streetAddress">123 Oak St.</span>',
+            '<span itemprop="streetAddress">123 Oak St.</span>&#8203;',
             $Street->render()
         );
     }

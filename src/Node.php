@@ -18,6 +18,61 @@ class Node
         'embed',
     ];
 
+    public const INLINE = [
+        'a',
+        'abbr',
+        'audio',
+        'b',
+        'bdo',
+        'button',
+        'canvas',
+        'cite',
+        'code',
+        'command',
+        'data',
+        'datalist',
+        'dfn',
+        'em',
+        'embed',
+        'i',
+        'iframe',
+        'img',
+        'input',
+        'kbd',
+        'keygen',
+        'label',
+        'mark',
+        'math',
+        'meter',
+        'noscript',
+        'object',
+        'output',
+        'picture',
+        'progress',
+        'q',
+        'ruby',
+        'samp',
+        'script',
+        'select',
+        'small',
+        'span',
+        'strong',
+        'sub',
+        'sup',
+        'svg',
+        'textarea',
+        'time',
+        'var',
+        'video',
+    ];
+
+    /**
+     * This inserts some kind of zero-width space after inline elements, so that
+     * browsers will allow them to move to the next line. <wbr> would be a
+     * better solution, but unfortunately IE doesn't support it.
+     */
+    public const SPACER = '&#8203;';
+
     protected $itemscope;
     protected $itemprop;
     protected $itemtype;
@@ -25,6 +80,7 @@ class Node
     protected $attributes;
     protected $tag;
     protected $selfclosing;
+    protected $inline;
     protected $empty;
 
     protected function __construct(array $args)
@@ -39,9 +95,10 @@ class Node
             $this->setItemscope($Args);
             $this->setItemprop($Args);
             $this->setItemtype($Args);
-            $this->setSelfClosing($Args);
             $this->setContent($Args);
             $this->setTag($Args);
+            $this->setSelfClosing($Args);
+            $this->setInline($Args);
             $this->setAttributes($Args);
         }
     }
@@ -115,10 +172,16 @@ class Node
         $rendered_attributes = join(' ', $attributes);
 
         if ($this->selfclosing) {
-            return "<{$this->tag} $rendered_attributes />";
+            $tag = "<{$this->tag} $rendered_attributes />";
         } else {
-            return "<{$this->tag} $rendered_attributes>{$this->content}</{$this->tag}>";
+            $tag = "<{$this->tag} $rendered_attributes>{$this->content}</{$this->tag}>";
         }
+
+        if ($this->inline) {
+            $tag = $tag . $this::SPACER;
+        }
+
+        return $tag;
     }
 
     protected function setItemscope(Brief $Args): void
@@ -128,7 +191,12 @@ class Node
 
     protected function setSelfClosing(Brief $Args): void
     {
-        $this->selfclosing = in_array($Args->tag, $this::SELFCLOSING);
+        $this->selfclosing = in_array($this->tag, $this::SELFCLOSING);
+    }
+
+    protected function setInline(Brief $Args): void
+    {
+        $this->inline = in_array($this->tag, $this::INLINE);
     }
 
     protected function setItemprop(Brief $Args): void

@@ -74,7 +74,7 @@ class NodeTest extends TestCase
             ])->render()
         );
         $this->assertEquals(
-            '<a itemscope itemprop="description" itemprop="http://schema.org/LocalBusiness" href="https://www.alwaysblank.org">Always Blank</a>',
+            '<a itemscope itemprop="description" itemprop="http://schema.org/LocalBusiness" href="https://www.alwaysblank.org">Always Blank</a>&#8203;',
             Node::add([
                 'itemscope' => true,
                 'itemtype'  => 'http://schema.org/LocalBusiness',
@@ -91,7 +91,7 @@ class NodeTest extends TestCase
     public function testSetAttributesViaAliases(): void
     {
         $this->assertEquals(
-            '<a itemscope itemprop="description" itemprop="http://schema.org/LocalBusiness" href="https://www.alwaysblank.org">Always Blank</a>',
+            '<a itemscope itemprop="description" itemprop="http://schema.org/LocalBusiness" href="https://www.alwaysblank.org">Always Blank</a>&#8203;',
             Node::add([
                 'scope' => true,
                 'type'  => 'http://schema.org/LocalBusiness',
@@ -104,7 +104,7 @@ class NodeTest extends TestCase
             ])->render()
         );
         $this->assertEquals(
-            '<a itemscope itemprop="description" itemprop="http://schema.org/LocalBusiness" href="https://www.alwaysblank.org">Always Blank</a>',
+            '<a itemscope itemprop="description" itemprop="http://schema.org/LocalBusiness" href="https://www.alwaysblank.org">Always Blank</a>&#8203;',
             Node::add([
                 'iscope' => true,
                 'itype'  => 'http://schema.org/LocalBusiness',

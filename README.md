@@ -43,6 +43,8 @@ echo AlwaysBlank\Schemer\Scheme\PostalAddress::build([
 // <a itemscope itemprop="http://schema.org/PostalAddress" href="https://www.alwaysblank.org' hidden><span itemprop="streetAddress">123 Oak St</span><span itemprop="addressRegion">OR</span><span itemprop="addressLocality">Portland</span><span itemprop="postalCode">97123</span><span itemprop="postOfficeBoxNumber">P.O. 1234</span><span itemprop="addressCountry">USA</span></a>
 ```
 
+> The actual HTML output is slightly different: To allow for simple breaks but maximum styling options, each inline element is followed by `&#8203;`, a zero-width space. This allows the browser to break at this point, but contributes no formatting apart from that.
+
 ### Schemes
 
 Currently Schemer supports the following Schemes in some fashion. More will be added in the future! Please feel free to file an issue with schemes you'd like to see, or—even better!—a pull request adding them. See "How It Works" below for more information on how to create new Schemes and Properties.
