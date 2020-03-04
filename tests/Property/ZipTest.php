@@ -22,7 +22,7 @@ class ZipTest extends TestCase
     {
         $Zip = $this::zip('97123');
         $this->assertEquals(
-            '<span itemprop="postalCode">97123</span>&#8203;',
+            '<span itemprop="postalCode">97123</span><span class="spc">&#8203;</span>',
             $Zip->render()
         );
     }

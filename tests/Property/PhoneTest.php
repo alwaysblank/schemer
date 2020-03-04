@@ -22,7 +22,7 @@ class PhoneTest extends TestCase
     {
         $Phone = $this::phone('(123) 456-7890');
         $this->assertEquals(
-            '<a itemprop="telephone" href="tel:1234567890">(123) 456-7890</a>&#8203;',
+            '<a itemprop="telephone" href="tel:1234567890">(123) 456-7890</a><span class="spc">&#8203;</span>',
             $Phone->render()
         );
     }

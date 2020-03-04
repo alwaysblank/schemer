@@ -43,7 +43,7 @@ echo AlwaysBlank\Schemer\Scheme\PostalAddress::build([
 // <a itemscope itemprop="http://schema.org/PostalAddress" href="https://www.alwaysblank.org' hidden><span itemprop="streetAddress">123 Oak St</span><span itemprop="addressRegion">OR</span><span itemprop="addressLocality">Portland</span><span itemprop="postalCode">97123</span><span itemprop="postOfficeBoxNumber">P.O. 1234</span><span itemprop="addressCountry">USA</span></a>
 ```
 
-> The actual HTML output is slightly different: To allow for simple breaks but maximum styling options, each inline element is followed by `&#8203;`, a zero-width space. This allows the browser to break at this point, but contributes no formatting apart from that.
+> The actual HTML output is slightly different: To allow for simple breaks but maximum styling options, each inline element is followed by `<span class="spc">&#8203;</span>`, a zero-width space. This allows the browser to break at this point, but contributes no formatting apart from that.
 
 ### Schemes
 

@@ -22,7 +22,7 @@ class CityTest extends TestCase
     {
         $City = $this::city('Portland');
         $this->assertEquals(
-            '<span itemprop="addressLocality">Portland</span>&#8203;',
+            '<span itemprop="addressLocality">Portland</span><span class="spc">&#8203;</span>',
             $City->render()
         );
     }

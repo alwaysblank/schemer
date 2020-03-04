@@ -18,7 +18,7 @@ class PostalAddressTest extends TestCase
         ['pobox', 'P.O. 1234'],
         ['country', 'USA'],
     ];
-    const RENDERED = '<span itemscope itemprop="http://schema.org/PostalAddress"><span itemprop="streetAddress">123 Oak St</span>&#8203;<span itemprop="addressRegion">OR</span>&#8203;<span itemprop="addressLocality">Portland</span>&#8203;<span itemprop="postalCode">97123</span>&#8203;<span itemprop="postOfficeBoxNumber">P.O. 1234</span>&#8203;<span itemprop="addressCountry">USA</span>&#8203;</span>&#8203;';
+    const RENDERED = '<span itemscope itemprop="http://schema.org/PostalAddress"><span itemprop="streetAddress">123 Oak St</span><span class="spc">&#8203;</span><span itemprop="addressRegion">OR</span><span class="spc">&#8203;</span><span itemprop="addressLocality">Portland</span><span class="spc">&#8203;</span><span itemprop="postalCode">97123</span><span class="spc">&#8203;</span><span itemprop="postOfficeBoxNumber">P.O. 1234</span><span class="spc">&#8203;</span><span itemprop="addressCountry">USA</span><span class="spc">&#8203;</span></span><span class="spc">&#8203;</span>';
 
     public function testCreatePostalAddress(): void
     {

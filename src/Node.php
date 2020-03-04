@@ -178,7 +178,7 @@ class Node
         }
 
         if ($this->inline) {
-            $tag = $tag . $this::SPACER;
+            $tag .= '<span class="spc">' . $this::SPACER . '</span>';
         }
 
         return $tag;

@@ -22,7 +22,7 @@ class POBoxTest extends TestCase
     {
         $POBox = $this::pobox('P.O. 1234');
         $this->assertEquals(
-            '<span itemprop="postOfficeBoxNumber">P.O. 1234</span>&#8203;',
+            '<span itemprop="postOfficeBoxNumber">P.O. 1234</span><span class="spc">&#8203;</span>',
             $POBox->render()
         );
     }
