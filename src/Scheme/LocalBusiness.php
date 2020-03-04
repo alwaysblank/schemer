@@ -20,6 +20,7 @@ class LocalBusiness extends Scheme
             'itemscope' => true,
             'itemtype'  => 'http://schema.org/LocalBusiness',
             'content'   => $content,
+	    'tag'	=> 'div',
         ], $args));
     }
 }
