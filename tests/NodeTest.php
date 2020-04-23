@@ -20,7 +20,7 @@ class NodeTest extends TestCase
         ]);
 
         $this->assertEquals(
-            '<div itemscope itemprop="description" itemprop="http://schema.org/LocalBusiness">Always Blank</div>',
+            '<div itemscope itemprop="description" itemtype="http://schema.org/LocalBusiness">Always Blank</div>',
             $node->render()
         );
     }
@@ -37,7 +37,7 @@ class NodeTest extends TestCase
         ]);
 
         $this->assertEquals(
-            '<meta itemscope itemprop="description" itemprop="http://schema.org/LocalBusiness" content="Always Blank" />',
+            '<meta itemscope itemprop="description" itemtype="http://schema.org/LocalBusiness" content="Always Blank" />',
             $node->render()
         );
     }
@@ -53,7 +53,7 @@ class NodeTest extends TestCase
         ]);
 
         $this->assertEquals(
-            '<div itemscope itemprop="description" itemprop="http://schema.org/LocalBusiness">Always Blank</div>',
+            '<div itemscope itemprop="description" itemtype="http://schema.org/LocalBusiness">Always Blank</div>',
             (string)$node
         );
     }
@@ -61,7 +61,7 @@ class NodeTest extends TestCase
     public function testAddArbitraryAttributes(): void
     {
         $this->assertEquals(
-            '<div itemscope itemprop="description" itemprop="http://schema.org/LocalBusiness" hidden>Always Blank</div>',
+            '<div itemscope itemprop="description" itemtype="http://schema.org/LocalBusiness" hidden>Always Blank</div>',
             Node::add([
                 'itemscope' => true,
                 'itemtype'  => 'http://schema.org/LocalBusiness',
@@ -74,7 +74,7 @@ class NodeTest extends TestCase
             ])->render()
         );
         $this->assertEquals(
-            '<a itemscope itemprop="description" itemprop="http://schema.org/LocalBusiness" href="https://www.alwaysblank.org">Always Blank</a><span class="spc">&#8203;</span>',
+            '<a itemscope itemprop="description" itemtype="http://schema.org/LocalBusiness" href="https://www.alwaysblank.org">Always Blank</a><span class="spc">&#8203;</span>',
             Node::add([
                 'itemscope' => true,
                 'itemtype'  => 'http://schema.org/LocalBusiness',
@@ -91,7 +91,7 @@ class NodeTest extends TestCase
     public function testSetAttributesViaAliases(): void
     {
         $this->assertEquals(
-            '<a itemscope itemprop="description" itemprop="http://schema.org/LocalBusiness" href="https://www.alwaysblank.org">Always Blank</a><span class="spc">&#8203;</span>',
+            '<a itemscope itemprop="description" itemtype="http://schema.org/LocalBusiness" href="https://www.alwaysblank.org">Always Blank</a><span class="spc">&#8203;</span>',
             Node::add([
                 'scope' => true,
                 'type'  => 'http://schema.org/LocalBusiness',
@@ -104,7 +104,7 @@ class NodeTest extends TestCase
             ])->render()
         );
         $this->assertEquals(
-            '<a itemscope itemprop="description" itemprop="http://schema.org/LocalBusiness" href="https://www.alwaysblank.org">Always Blank</a><span class="spc">&#8203;</span>',
+            '<a itemscope itemprop="description" itemtype="http://schema.org/LocalBusiness" href="https://www.alwaysblank.org">Always Blank</a><span class="spc">&#8203;</span>',
             Node::add([
                 'iscope' => true,
                 'itype'  => 'http://schema.org/LocalBusiness',

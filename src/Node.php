@@ -152,7 +152,7 @@ class Node
         }
 
         if ($this->itemtype) {
-            $attributes[] = 'itemprop="' . $this->itemtype . '"';
+            $attributes[] = 'itemtype="' . $this->itemtype . '"';
         }
 
         if (is_array($this->attributes)) {
