@@ -8,9 +8,9 @@ use AlwaysBlank\Schemer\Node;
 
 trait Phone
 {
-    public static function phone(string $phone): Node
+    public static function phone(string $phone, $settings = []): Node
     {
-        return Node::add([
+        return Node::add(array_merge([
             'itemprop'   => 'telephone',
             'content'    => $phone,
             'tag'        => 'a',
@@ -23,6 +23,6 @@ trait Phone
                     )
                 ),
             ]
-        ]);
+        ], $settings));
     }
 }

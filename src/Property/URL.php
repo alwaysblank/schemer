@@ -8,7 +8,7 @@ use AlwaysBlank\Schemer\Node;
 
 trait URL
 {
-    public static function url($url): Node
+    public static function url($url, $settings = []): Node
     {
         if (is_string($url)) {
             $content = $url;
@@ -21,13 +21,13 @@ trait URL
             return Node::add([]);
         }
 
-        return Node::add([
+        return Node::add(array_merge([
             'itemprop'   => 'url',
             'content'    => $content,
             'tag'        => 'a',
             'attributes' => [
                 'href' => $uri,
             ]
-        ]);
+        ], $settings));
     }
 }

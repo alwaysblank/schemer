@@ -27,4 +27,13 @@ class ZipTest extends TestCase
         );
     }
 
+    public function testRenderZipNodeWithSettings(): void
+    {
+        $Zip = $this::zip('97123', ['spacer' => ', ']);
+        $this->assertEquals(
+            '<span itemprop="postalCode">97123</span>, ',
+            $Zip->render()
+        );
+    }
+
 }

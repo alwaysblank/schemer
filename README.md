@@ -45,6 +45,20 @@ echo AlwaysBlank\Schemer\Scheme\PostalAddress::build([
 
 > The actual HTML output is slightly different: To allow for simple breaks but maximum styling options, each inline element is followed by `<span class="spc">&#8203;</span>`, a zero-width space. This allows the browser to break at this point, but contributes no formatting apart from that.
 
+You can also pass a second "argument" to the segments of a scheme, which behaves in more or less the same way as described above. This is especially useful if you want to use a different spacer or something:
+
+```php
+echo AlwaysBlank\Schemer\Scheme\PostalAddress::build([
+    /** ... */
+    ['state', 'OR', ['spacer' => ', ']],
+    /** ... */
+]);
+
+// ... <span itemprop="addressRegion">OR</span>, ...
+```
+
+**Take note:** Custom arguments like this do _not_ cascade down to items below them. This isn't particularly relevant when dealing with schemes that contain only properties, but when your Scheme contains other schemes you might expect them to inherit, say, your `spacer` definition, and that won't happen.
+
 ### Schemes
 
 Currently Schemer supports the following Schemes in some fashion. More will be added in the future! Please feel free to file an issue with schemes you'd like to see, or—even better!—a pull request adding them. See "How It Works" below for more information on how to create new Schemes and Properties.

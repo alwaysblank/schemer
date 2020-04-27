@@ -27,4 +27,13 @@ class NameTest extends TestCase
         );
     }
 
+    public function testRenderNameNodeWithSettings(): void
+    {
+        $Name = $this::name('Always Blank', ['spacer' => ', ']);
+        $this->assertEquals(
+            '<span itemprop="name">Always Blank</span>, ',
+            $Name->render()
+        );
+    }
+
 }

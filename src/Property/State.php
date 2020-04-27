@@ -8,11 +8,11 @@ use AlwaysBlank\Schemer\Node;
 
 trait State
 {
-    public static function state(string $state): Node
+    public static function state(string $state, $settings = []): Node
     {
-        return Node::add([
+        return Node::add(array_merge([
             'itemprop' => 'addressRegion',
             'content'  => $state,
-        ]);
+        ], $settings));
     }
 }

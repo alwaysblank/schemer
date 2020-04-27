@@ -82,6 +82,7 @@ class Node
     protected $selfclosing;
     protected $inline;
     protected $empty;
+    protected $spacer;
 
     protected function __construct(array $args)
     {
@@ -100,6 +101,7 @@ class Node
             $this->setSelfClosing($Args);
             $this->setInline($Args);
             $this->setAttributes($Args);
+            $this->setSpacer($Args);
         }
     }
 
@@ -178,7 +180,7 @@ class Node
         }
 
         if ($this->inline) {
-            $tag .= '<span class="spc">' . $this::SPACER . '</span>';
+            $tag .= $this->spacer;
         }
 
         return $tag;
@@ -228,5 +230,10 @@ class Node
             }
             $this->attributes = $collected_attributes;
         }
+    }
+
+    protected function setSpacer(Brief $Args)
+    {
+        $this->spacer = is_string($Args->spacer) ? $Args->spacer : '<span class="spc">' . $this::SPACER . '</span>';
     }
 }

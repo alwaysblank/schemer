@@ -27,4 +27,13 @@ class CountryTest extends TestCase
         );
     }
 
+    public function testRenderCountryNodeWithSettings(): void
+    {
+        $Country = $this::country('USA', ['spacer' => ', ']);
+        $this->assertEquals(
+            '<span itemprop="addressCountry">USA</span>, ',
+            $Country->render()
+        );
+    }
+
 }

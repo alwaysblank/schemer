@@ -38,4 +38,32 @@ class PostalAddressTest extends TestCase
             (string)$address
         );
     }
+
+    public function testRenderPostalAddressCustomSpacer(): void
+    {
+        $address = PostalAddress::build($this::ADDRESS, ['spacer' => ' ']);
+        $compare = '<span itemscope itemtype="http://schema.org/PostalAddress"><span itemprop="streetAddress">123 Oak St</span><span class="spc">&#8203;</span><span itemprop="addressRegion">OR</span><span class="spc">&#8203;</span><span itemprop="addressLocality">Portland</span><span class="spc">&#8203;</span><span itemprop="postalCode">97123</span><span class="spc">&#8203;</span><span itemprop="postOfficeBoxNumber">P.O. 1234</span><span class="spc">&#8203;</span><span itemprop="addressCountry">USA</span><span class="spc">&#8203;</span></span> ';
+        $this->assertEquals(
+            $compare,
+            $address->render()
+        );
+        $this->assertEquals(
+            $compare,
+            (string)$address
+        );
+    }
+
+    public function testRenderPostalAddressWithSettings(): void
+    {
+        $compare = '<span itemscope itemtype="http://schema.org/PostalAddress"><span itemprop="streetAddress">123 Oak St</span><span class="spc">&#8203;</span><span itemprop="addressRegion">OR</span><br><span itemprop="addressLocality">Portland</span>, <span itemprop="postalCode">97123</span><span class="spc">&#8203;</span><span itemprop="postOfficeBoxNumber">P.O. 1234</span><span class="spc">&#8203;</span><span itemprop="addressCountry">USA</span><span class="spc">&#8203;</span></span><span class="spc">&#8203;</span>';
+
+        $source    = $this::ADDRESS;
+        $source[2] = ['city', 'Portland', ['spacer' => ', ']];
+        $source[1] = ['state', 'OR', ['spacer' => '<br>']];
+        $address   = PostalAddress::build($source);
+        $this->assertEquals(
+            $compare,
+            $address->render()
+        );
+    }
 }

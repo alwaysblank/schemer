@@ -27,4 +27,13 @@ class StreetTest extends TestCase
         );
     }
 
+    public function testRenderStreetNodeWithSettings(): void
+    {
+        $Street = $this::street('123 Oak St.', ['spacer' => ', ']);
+        $this->assertEquals(
+            '<span itemprop="streetAddress">123 Oak St.</span>, ',
+            $Street->render()
+        );
+    }
+
 }

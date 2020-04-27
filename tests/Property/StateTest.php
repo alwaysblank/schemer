@@ -27,4 +27,13 @@ class StateTest extends TestCase
         );
     }
 
+    public function testRenderStateNodeWithSettings(): void
+    {
+        $State = $this::state('Oregon', ['spacer' => ', ']);
+        $this->assertEquals(
+            '<span itemprop="addressRegion">Oregon</span>, ',
+            $State->render()
+        );
+    }
+
 }

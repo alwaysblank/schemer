@@ -8,11 +8,11 @@ use AlwaysBlank\Schemer\Node;
 
 trait Zip
 {
-    public static function zip(string $zip): Node
+    public static function zip(string $zip, $settings = []): Node
     {
-        return Node::add([
+        return Node::add(array_merge([
             'itemprop' => 'postalCode',
             'content'  => $zip,
-        ]);
+        ], $settings));
     }
 }

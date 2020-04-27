@@ -20,6 +20,15 @@ class URLTest extends TestCase
         $this->assertInstanceOf(Node::class, $URLComplex);
     }
 
+    public function testRenderSimpleUrlNodeWithSettings(): void
+    {
+        $URL = $this::url('https://www.alwaysblank.org', ['spacer' => ', ']);
+        $this->assertEquals(
+            '<a itemprop="url" href="https://www.alwaysblank.org">https://www.alwaysblank.org</a>, ',
+            $URL->render()
+        );
+    }
+
     public function testRenderSimpleUrlNode(): void
     {
         $URL = $this::url('https://www.alwaysblank.org');

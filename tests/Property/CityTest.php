@@ -27,4 +27,13 @@ class CityTest extends TestCase
         );
     }
 
+    public function testRenderCityNodeWithSettings(): void
+    {
+        $City = $this::city('Portland', ['spacer' => ', ']);
+        $this->assertEquals(
+            '<span itemprop="addressLocality">Portland</span>, ',
+            $City->render()
+        );
+    }
+
 }

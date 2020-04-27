@@ -27,4 +27,13 @@ class POBoxTest extends TestCase
         );
     }
 
+    public function testRenderPOBoxNodeWithSettings(): void
+    {
+        $POBox = $this::pobox('P.O. 1234', ['spacer' => ', ']);
+        $this->assertEquals(
+            '<span itemprop="postOfficeBoxNumber">P.O. 1234</span>, ',
+            $POBox->render()
+        );
+    }
+
 }

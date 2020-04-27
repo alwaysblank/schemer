@@ -27,4 +27,13 @@ class PhoneTest extends TestCase
         );
     }
 
+    public function testRenderPhoneNodeWithSettings(): void
+    {
+        $Phone = $this::phone('(123) 456-7890', ['spacer' => ', ']);
+        $this->assertEquals(
+            '<a itemprop="telephone" href="tel:1234567890">(123) 456-7890</a>, ',
+            $Phone->render()
+        );
+    }
+
 }
