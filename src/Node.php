@@ -186,7 +186,7 @@ class Node
 
     protected function setItemscope(Brief $Args): void
     {
-        $this->itemscope = false !== $Args->itemscope ? true : false;
+        $this->itemscope = null !== $Args->itemscope ? true : false;
     }
 
     protected function setSelfClosing(Brief $Args): void

@@ -19,7 +19,7 @@
     },
     "require": {
         "php": "^7.2",
-        "alwaysblank/brief": "^1.2"
+        "alwaysblank/brief": "^2.0.0-alpha"
     },
     "scripts": {
         "test": "./vendor/bin/phpunit --testdox"
